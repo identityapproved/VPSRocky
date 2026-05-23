@@ -88,12 +88,8 @@ export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-if command -v zoxide >/dev/null 2>&1; then
-  eval "$(zoxide init --cmd cd zsh)"
-fi
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-# bat 
+# bat
 
 # bat can be used as a colorizing pager for man, by setting the MANPAGER environment variable:
 export MANPAGER="sh -c 'awk '\''{ gsub(/\x1B\[[0-9;]*m/, \"\", \$0); gsub(/.\x08/, \"\", \$0); print }'\'' | bat -p -lman'"
@@ -109,5 +105,15 @@ if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
   source "$NVM_DIR/nvm.sh"
   if [[ -s "$NVM_DIR/bash_completion" ]]; then
     source "$NVM_DIR/bash_completion"
+  fi
+fi
+
+if command -v zoxide >/dev/null 2>&1; then
+  function zvm_after_init() {
+    eval "$(zoxide init --cmd cd zsh)"
+  }
+  # Fallback: if zsh-vi-mode not loaded, zvm_after_init never fires
+  if [[ -z "$ZVM_VERSION" ]]; then
+    eval "$(zoxide init --cmd cd zsh)"
   fi
 fi

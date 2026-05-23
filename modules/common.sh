@@ -10,6 +10,7 @@ readonly ZSH_TEMPLATE_DIR="${TEMPLATES_DIR}/zsh"
 readonly TMUX_TEMPLATE="${TEMPLATES_DIR}/tmux/tmux.conf"
 readonly VIMRC_TEMPLATE="${TEMPLATES_DIR}/vim/.vimrc"
 readonly ALIASES_TEMPLATE="${ZSH_TEMPLATE_DIR}/.aliases"
+readonly ZSHENV_TEMPLATE="${ZSH_TEMPLATE_DIR}/.zshenv"
 readonly ZSHRC_TEMPLATE="${ZSH_TEMPLATE_DIR}/.zshrc"
 
 log_info() { printf '[%s] %s\n' "$(date --iso-8601=seconds)" "$*"; }

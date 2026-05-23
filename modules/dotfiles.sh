@@ -75,6 +75,13 @@ configure_shells_and_editors() {
     log_warn "Missing Zsh template at ${ZSHRC_TEMPLATE}"
   fi
 
+  if [[ -f "${ZSHENV_TEMPLATE}" ]]; then
+    install -m 0644 "${ZSHENV_TEMPLATE}" "${user_home}/.zshenv"
+    chown "${NEW_USER}:${NEW_USER}" "${user_home}/.zshenv"
+  else
+    log_warn "Missing Zsh env template at ${ZSHENV_TEMPLATE}"
+  fi
+
   if command_exists zsh; then
     chsh -s /usr/bin/zsh "${NEW_USER}" || log_warn "Unable to set zsh as default shell for ${NEW_USER}"
   fi
